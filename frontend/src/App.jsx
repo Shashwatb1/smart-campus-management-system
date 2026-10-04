@@ -7,6 +7,7 @@ import Register from "./pages/Register.jsx";
 import StudentDashboard from "./pages/StudentDashboard.jsx";
 import FacultyDashboard from "./pages/FacultyDashboard.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+import About from "./pages/About.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
 import { dashboardPathForRole } from "./utils/roles.js";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/student"
           element={

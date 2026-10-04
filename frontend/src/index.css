@@ -74,18 +74,17 @@ h1, h2, .navbar-brand {
   gap: 10px;
 }
 .navbar-logo {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #6366f1, #06b6d4);
-  border-radius: 9px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
 }
-.navbar-logo svg {
-  width: 19px;
-  height: 19px;
+.navbar-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .navbar-links {
   display: flex;
@@ -110,6 +109,16 @@ h1, h2, .navbar-brand {
   padding: 6px 14px;
   border-radius: 999px;
   text-transform: capitalize;
+}
+.navbar-link-muted {
+  color: #9ca3e8 !important;
+  font-size: 0.82rem !important;
+  font-weight: 400 !important;
+  padding-left: 6px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+.navbar-link-muted:hover {
+  color: white !important;
 }
 
 /* Buttons */
@@ -303,6 +312,8 @@ h1, h2, .navbar-brand {
   padding: 24px;
 }
 .auth-form {
+  position: relative;
+  z-index: 1;
   background: var(--surface);
   padding: 40px 36px;
   border-radius: var(--radius);
@@ -424,6 +435,71 @@ h1, h2, .navbar-brand {
 .status-pill.warning .dot { background: #d97706; }
 .status-pill.info { color: #1e40af; }
 .status-pill.info .dot { background: #2563eb; }
+
+/* About page — logo + team section reuse the greeting/list-card system */
+.about-greeting {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-logo {
+  width: 220px;
+  height: auto;
+  margin-bottom: 14px;
+}
+.about-greeting .tagline {
+  max-width: 560px;
+  font-size: 1.02rem;
+}
+.about-text {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.team-name-label {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fafafc;
+}
+.team-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9a3412, #c2410c);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  flex-shrink: 0;
+}
+.team-member-name {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.94rem;
+}
+.team-member-role {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
 
 /* Two-column dashboard grid: list cards left, action cards right */
 .dashboard-grid {
@@ -578,6 +654,7 @@ h1, h2, .navbar-brand {
   background: linear-gradient(135deg, #9a3412, #c2410c);
 }
 
+/* Generic card (kept for backward compatibility) */
 .card {
   background: var(--surface);
   padding: 26px 28px;
@@ -594,16 +671,6 @@ h1, h2, .navbar-brand {
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.card h2::before {
-  content: "";
-  width: 4px;
-  height: 18px;
-  background: linear-gradient(180deg, var(--primary), var(--accent));
-  border-radius: 999px;
 }
 
 .notice-list {
@@ -811,6 +878,9 @@ h1, h2, .navbar-brand {
     justify-content: center;
   }
   .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-grid {
     grid-template-columns: 1fr;
   }
 }

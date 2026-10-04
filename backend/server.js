@@ -31,7 +31,7 @@ app.use("/api/complaints", complaintRoutes);
 
 // Health check
 app.get("/", (req, res) => {
-  res.send("Smart Campus Management System API is running");
+  res.send("Nivaran API is running");
 });
 
 const PORT = process.env.PORT || 5000;
