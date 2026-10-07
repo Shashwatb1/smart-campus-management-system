@@ -13,10 +13,16 @@ const generateToken = (user) => {
 // POST /api/auth/register
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, adminCode } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email and password are required" });
+    }
+
+    if (role === "admin") {
+      if (!process.env.ADMIN_CODE || adminCode !== process.env.ADMIN_CODE) {
+        return res.status(403).json({ message: "Invalid admin code" });
+      } 
     }
 
     const existingUser = await User.findOne({ email });
