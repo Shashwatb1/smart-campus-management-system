@@ -11,6 +11,7 @@ const Register = () => {
     email: "",
     password: "",
     role: "student",
+    adminCode: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -73,6 +74,16 @@ const Register = () => {
             <option value="faculty">Faculty</option>
             <option value="admin">Admin</option>
           </select>
+          {formData.role === "admin" && (
+            <input
+              type="password"
+              name="adminCode"
+              placeholder="Admin code"
+              value={formData.adminCode}
+              onChange={handleChange}
+              required
+            />
+          )}
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? "Creating account..." : "Register"}
           </button>
