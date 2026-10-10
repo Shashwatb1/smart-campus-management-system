@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import API from "../api/axios.js";
 import PageHeader from "../components/PageHeader.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
+import usePolling from "../hooks/usePolling.js";
 
 const StudentDashboard = () => {
   const { user } = useAuth();
@@ -23,9 +24,7 @@ const StudentDashboard = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  usePolling(fetchData, 15000);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
