@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import API from "../api/axios.js";
 import PageHeader from "../components/PageHeader.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
+import usePolling from "../hooks/usePolling.js";
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -26,9 +27,7 @@ const AdminDashboard = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  usePolling(fetchData, 15000);
 
   const handleNoticeChange = (e) => {
     setNoticeForm({ ...noticeForm, [e.target.name]: e.target.value });
