@@ -9,6 +9,11 @@ const complaintRoutes = require("./routes/complaintRoutes");
 
 const app = express();
 
+// Render (and most hosts) put a proxy in front of the app. This tells Express to
+// read the visitor's real IP address instead of the proxy's, so rate limits
+// apply per person and not to everybody at once.
+app.set("trust proxy", 1);
+
 // Middleware
 // FRONTEND_URL should be your deployed frontend's URL (e.g. https://your-app.vercel.app).
 // Falls back to allowing all origins if unset, so local development still works unchanged.
